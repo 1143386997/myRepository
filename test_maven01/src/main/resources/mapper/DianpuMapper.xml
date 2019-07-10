@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bawei.dao.DianpuDao">
+	<resultMap type="Dianpu" id="dianpuMap">
+		<id property="did" column="did"/>
+		<result property="dname" column="dname"/>
+		<result property="createtime" column="createtime"/>
+		<collection property="shows" ofType="Show" javaType="java.util.List" column="did" select="showMap"></collection>
+	</resultMap>
+	<select id="showMap" resultType="Show">
+		select * from `show` as s JOIN dian_show as d on s.sid=d.sid where d.did=#{did}
+	</select>
+	<select id="queryDianpus" resultMap="dianpuMap">
+		select * from dianpu
+	</select>
+	<!-- 新增 -->
+	<insert id="addDianpu" parameterType="Dianpu">
+		insert into dianpu(did,dname,createtime) values(#{did},#{dname},#{createtime})
+	</insert>
+</mapper>      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

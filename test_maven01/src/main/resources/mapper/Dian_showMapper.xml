@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bawei.dao.Dian_showDao">
+	<!-- 新增 -->
+	<insert id="addDian_Show">
+		insert into dian_show(did,sid)values
+		<foreach collection="sids" separator="," item="item" index="index">
+			(#{did},#{item})
+		</foreach>
+	</insert>
+</mapper>      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
