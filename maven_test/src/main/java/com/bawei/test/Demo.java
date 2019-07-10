@@ -2,6 +2,6 @@ package com.bawei.test;
 
 public class Demo {
 	public static void main(String[] args) {
-		System.out.println("大家好");
+		int i=0;
 	}
 }
