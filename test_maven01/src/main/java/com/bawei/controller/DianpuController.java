@@ -26,10 +26,13 @@ public class DianpuController {
 	@Resource
 	private Dian_showService dian_showService;
 	@RequestMapping("queryDianpu")
-	public ModelAndView queryDianpu(Dianpu dianpu,Show show,@RequestParam(value="page",required=false,defaultValue="1")int page,
+	public ModelAndView queryDianpu(Dianpu dianpu,@RequestParam(required=false,defaultValue=" ")String[] snames,Show show,@RequestParam(value="page",required=false,defaultValue="1")int page,
 			@RequestParam(value="size",required=false,defaultValue="3")int size){
+		for (String string : snames) {
+			System.out.println(string);
+		}
 		ModelAndView modelAndView = new ModelAndView();
-		List<Dianpu> queryDianpus = dianpuService.queryDianpus(dianpu, show, page, size);
+		List<Dianpu> queryDianpus = dianpuService.queryDianpus(dianpu, show, page, size,snames);
 		//查询所有商品
 		List<Show> queryShows = showService.queryShows();
 		modelAndView.addObject("dianpuList", new PageInfo<Dianpu>(queryDianpus));
@@ -58,4 +61,28 @@ public class DianpuController {
 		}
 		return modelAndView;
 	}
+	/**
+	 *	根据id查询 
+	 */
+	@RequestMapping("queryDianpuById")
+	public ModelAndView queryDianpuById(int id){
+		ModelAndView modelAndView = new ModelAndView();
+		//根据id查询店铺
+		Dianpu queryDianpuById = dianpuService.queryDianpuById(id);
+		modelAndView.addObject("dianpu",queryDianpuById);
+		modelAndView.setViewName("showDianpu");
+		return modelAndView;
+		
+	}
+	/**
+	 * 模糊查询
+	 *//*
+	@RequestMapping("queryDim")
+	public ModelAndView queryDim(Dianpu dianpu,String[] snames){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		return modelAndView;
+	}*/
+	
 }
+

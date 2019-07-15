@@ -11,14 +11,40 @@
 	</resultMap>
 	<select id="showMap" resultType="Show">
 		select * from `show` as s JOIN dian_show as d on s.sid=d.sid where d.did=#{did}
+		<foreach collection="snames" item="item"  >
+			<if test="item!=null and item!=''">
+				or s.sname LIKE concat('%',#{item},'%')
+			</if>
+		</foreach>
+	
+		<foreach collection=""></foreach>
 	</select>
 	<select id="queryDianpus" resultMap="dianpuMap">
 		select * from dianpu
+		<where>
+			<if test="dianpu.dname!=null and dianpu.dname!=''">
+				and dname like concat('%',#{dianpu.dname},'%')
+			</if>
+		</where>
 	</select>
 	<!-- 新增 -->
 	<insert id="addDianpu" parameterType="Dianpu">
 		insert into dianpu(did,dname,createtime) values(#{did},#{dname},#{createtime})
 	</insert>
+	<!--  查询 -->
+	
+	<resultMap type="Dianpu" id="dianpuMap2">
+		<id property="did" column="did"/>
+		<result property="dname" column="dname"/>
+		<result property="createtime" column="createtime"/>
+		<collection property="shows" javaType="java.util.List" ofType="Show" column="did" select="showMap2"></collection>
+	</resultMap>
+	<select id="showMap2" resultType="Show" >
+		select * from `show` as s JOIN dian_show as d ON s.sid=d.sid where d.did=#{did}
+	</select>
+	<select id="queryDianpuById" resultMap="dianpuMap2">
+		select * from dianpu where did=#{did}
+	</select>
 </mapper>      
 
 

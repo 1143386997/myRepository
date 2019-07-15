@@ -7,14 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/index_work.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/index_like.css" type="text/css">
 </head>
 <body>
 	<center>
 		销售商品
 		<form action="queryDianpu" method="post">
 			<c:forEach items="${showList }" var="shows">
-				<input type="checkbox" name="sname" value="${shows.sname }">${shows.sname }&nbsp;&nbsp;
+				<input type="checkbox" name="snames" value="${shows.sname }">${shows.sname }&nbsp;&nbsp;
 			</c:forEach><br/>
 			商铺名称:<input type="text" value="${dianpu.dname }" name="dname">
 			<input type="submit" value="查询">
@@ -40,7 +40,7 @@
 							${shows.sname }
 						</c:forEach>
 					</td>
-					<td><input type="button" value="详情"></td>
+					<td><input type="button" value="详情" onclick="location.href='${pageContext.request.contextPath}/queryDianpuById?id=${dianpus.did }'"></td>
 				</tr>
 			</c:forEach>
 			<tr>

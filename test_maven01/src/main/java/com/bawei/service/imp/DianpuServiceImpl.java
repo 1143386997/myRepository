@@ -18,13 +18,17 @@ public class DianpuServiceImpl implements DianpuService{
 	@Resource
 	private DianpuDao dianpuDao;
 	@Override
-	public List<Dianpu> queryDianpus(Dianpu dianpu, Show show,int page,int size) {
+	public List<Dianpu> queryDianpus(Dianpu dianpu, Show show,int page,int size,String[] snames) {
 		PageHelper.startPage(page, size);
-		return dianpuDao.queryDianpus(dianpu, show);
+		return dianpuDao.queryDianpus(dianpu, show,snames);
 	}
 	@Override
 	public int addDianpu(Dianpu dianpu) {
 		return dianpuDao.addDianpu(dianpu);
+	}
+	@Override
+	public Dianpu queryDianpuById(int id) {
+		return dianpuDao.queryDianpuById(id);
 	}
 
 }
