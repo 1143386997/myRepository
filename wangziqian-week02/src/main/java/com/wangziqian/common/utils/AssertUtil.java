@@ -9,6 +9,7 @@ public class AssertUtil {
 	 */
 	public static void isTrue(Boolean boolean1,String mes){
 		if(Boolean.FALSE.equals(boolean1)){
+			System.out.println("111");
 			throw new RuntimeExceptionUtil(mes);
 		}
 	}

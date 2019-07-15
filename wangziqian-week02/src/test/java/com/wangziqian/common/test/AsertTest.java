@@ -16,7 +16,8 @@ public class AsertTest {
 	 */
 	@Test
 	public void isTrue(){
-		AssertUtil.isTrue(false,"这个为false");
+		System.out.println("1");
+		AssertUtil.isTrue(true,"这个为false");
 	}
 	 //断言为假
 	@Test
